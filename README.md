@@ -1,7 +1,6 @@
 # Das schwächste Glied: warum die Kette langsam wird – Streamlit-Demo
 
-<!-- TODO nach dem Deploy: direkt hierher den Live-Link setzen (Leerzeile davor und danach):
-**[→ Demo live ausprobieren](https://sebastianhanisch-schwaechstes-glied-demo.streamlit.app/)** -->
+**[→ Demo live ausprobieren](https://sebastianhanisch-schwaechstes-glied-demo.streamlit.app/)**
 
 Fünftes Stück der Reihe **Koordinationsspiele** in der „Konzepte“-Reihe für die Website „Sebastian Hanisch – Operations Research und Machine Learning“. Vehikel: **Umschlagkette aus n Partnern.** Jeder wählt eine **Leistungsstufe 1 bis 7** (Schichtbesetzung, Torbelegung), die Kette läuft mit der **langsamsten** Stufe. Jede Stufe, auf der alle Partner stehen, ist für a > b > 0 ein striktes Gleichgewicht (durch Aufzählung für n ≤ 4 geprüft): **sieben strikte reine Gleichgewichte**, das mit allen auf 7 ist für alle das beste, aber am schwersten zu erreichen. Die Demo lässt **vier Lernregeln** (Logit-Erfahrungsbewertung in zwei Fassungen, beste Antwort mit Zittern, fiktives Spiel) auf diesem Spiel laufen und fragt: **was ist Start, was ist Lernen, warum rutscht das Minimum nach unten (eine Ratsche), wie klein wird der Einzugsbereich der obersten Stufe, und helfen Einsatzpreis, Prämie, Teams, Vorabsprache oder wachsende Gruppen?**
 
