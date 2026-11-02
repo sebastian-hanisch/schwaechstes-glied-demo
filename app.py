@@ -1,7 +1,7 @@
 """Das schwächste Glied: warum die Kette langsam wird - interaktive Konzept-Demo
 Sebastian Hanisch - Operations Research und Machine Learning
 
-Fünftes Stück der Reihe Koordinationsspiele. Eine Umschlagkette aus n Partnern läuft mit der langsamsten Leistungsstufe; es gibt sieben gleich gute Gleichgewichte. Die Demo lässt vier
+Fünftes Stück der Reihe Koordinationsspiele. Eine Umschlagkette aus n Partnern läuft mit der langsamsten Leistungsstufe; es gibt sieben strikte reine Gleichgewichte, das oberste ist für alle das beste. Die Demo lässt vier
 Lernregeln auf diesem Spiel laufen und fragt, was Start und was Lernen ist, warum das Minimum nach unten rutscht (Ratsche), wie klein der Einzugsbereich der obersten Stufe wird
 und ob Einsatzpreis, Prämie, Teams, Vorabsprache oder wachsende Gruppen helfen.
 
@@ -148,7 +148,7 @@ st.markdown(
     """
 **Fünftes Stück der Reihe Koordinationsspiele.** Das erste Stück (`koordinationsspiel-demo`) zeigt die Gleichgewichte eines Koordinationsspiels, das zweite (`gleichgewichtsauswahl-demo`), welches davon auf Dauer gewählt wird,
 das dritte (`konventionswechsel-demo`), wie lange ein Wechsel dauert, das vierte (`globale-spiele-demo`), was Unsicherheit über den Zustand ändert. Hier ist das Spiel eine **Umschlagkette aus n Partnern**:
-jeder wählt eine **Leistungsstufe 1 bis 7** (Schichtbesetzung, Torbelegung), und die Kette läuft mit der **langsamsten** Stufe. Jede Stufe, auf der alle Partner stehen, ist ein Gleichgewicht: **sieben gleich gut erreichbare Gleichgewichte.**
+jeder wählt eine **Leistungsstufe 1 bis 7** (Schichtbesetzung, Torbelegung), und die Kette läuft mit der **langsamsten** Stufe. Jede Stufe, auf der alle Partner stehen, ist ein Gleichgewicht: **sieben strikte reine Gleichgewichte**, das oberste ist für alle das beste, aber am schwersten zu erreichen.
 **Welches wählt eine Gruppe, die aus Erfahrung lernt, und was ändert sich mit Gruppengröße, Einsatzpreis und Vorabsprache?** Die Antwort in diesem Modell ist eine **Ratsche**: ein einzelner Fehler senkt das Minimum sofort,
 es wieder zu heben müssen alle Partner zugleich höher gehen. Gezählt und gemessen, nicht behauptet.
 
@@ -321,7 +321,7 @@ with tab3:
     if meas:
         grid3 = meas["basin"]
         st.plotly_chart(Z.build_basin_heatmap(grid3, C.BASIN_NS, C.BASIN_RATIOS), width="stretch", key="e3_heat")
-        st.caption(f"Vorgerechnet: {V.thousands(meas['basin_starts'])} Zufallsstarts je Zelle, höchstens {V.thousands(C.E3_STEPS)} Euler-Schritte (η = {V.de(C.E3_ETA, 1)}), Anteil in Prozent.")
+        st.caption(f"Vorgerechnet: {V.thousands(meas['basin_starts'])} Zufallsstarts je Zelle, höchstens {V.thousands(C.E3_STEPS)} Euler-Schritte (η = {V.de(C.E3_ETA, 1)}), Anteil in Prozent; 0,0 % heißt keiner der Starts, nicht unmöglich.")
         ratio3 = st.select_slider("b/a der Tabelle", options=C.BASIN_RATIOS, value=0.1 if 0.1 in C.BASIN_RATIOS else C.BASIN_RATIOS[0], key="e3_ratio_table", format_func=lambda x: V.de(x, 2))
         table([{"n": n_, **{f"Stufe {k}": V.pct(grid3[f"{n_}|{ratio3}"]["share"][k - 1], 1) for k in range(1, C.E_LEVELS + 1)}, "E[Minimum] des Endzustands": V.de(grid3[f"{n_}|{ratio3}"]["emin"], 2)} for n_ in C.BASIN_NS])
         v3 = V.verdict_e3({n_: grid3[f"{n_}|{ratio3}"] for n_ in C.BASIN_NS}, float(ratio3))
@@ -489,7 +489,7 @@ st.markdown(
     """
 | Annahme | Was passiert, wenn sie verletzt ist | Wer setzt an |
 |---|---|---|
-| **Die Lernregeln sind Modellannahmen** (vier Regeln, sieben Stufen, a = 0,2, b = 0,1, c = 0,6) | Gemessen sind diese Regeln, nicht das Verhalten von Menschen oder echten Umschlagstellen. Andere Regeln, Stufenzahlen oder Auszahlungen können andere Zahlen geben; gemessen ist, dass das Minimum bei kooperativem Start unter den drei Regeln mit Rauschen in 14 von 18 Zellen nach 400 Runden unter 4 liegt, nicht mehr. | `noregret-demo` |
+| **Die Lernregeln sind Modellannahmen** (vier Regeln, sieben Stufen, a = 0,2, b = 0,1, c = 0,6) | Gemessen sind diese Regeln, nicht das Verhalten von Menschen oder echten Umschlagstellen. Andere Regeln, Stufenzahlen oder Auszahlungen können andere Zahlen geben; gemessen ist, dass das Minimum bei kooperativem Start unter den drei Regeln mit Rauschen in 13 bis 14 von 18 Zellen nach 400 Runden unter 4 liegt, nicht mehr. | `noregret-demo` |
 | **Das Ergebnis hängt an Start und Fassung** | Schon die Fassung (Summe gegen Mittel) ändert die Geschwindigkeit um Größenordnungen; ein Befund gilt für die gemessene Zelle, nicht für „das Lernen“. | – |
 | **Gleiche Partner** | Alle Partner lernen mit denselben Parametern; ungleiche Schärfe, Führungspersonen oder Gruppen mit Absprache als Strategie sind nicht gerechnet. | `koordinationsspiel-demo` |
 | **Die Vorabsprache ist ein Anfangszustand der Lerner, kein Reden** | Sie bildet nicht ab, dass Menschen einander Zusagen machen oder brechen; Cheap Talk als Strategie ist nicht gerechnet. | – |
@@ -549,7 +549,7 @@ $$E[\min] = \sum_{k=1}^{E} \prod_{i=1}^{n} P(x_i \ge k), \qquad E[\min] = \sum_{
 
 $$1 + \frac{1}{1 - q^{n}}$$
 
-Erwartete Treffzeiten der Markov-Kette über alle $E^n$ Profile mit Übergangsmatrix $P$ lösen $(I - Q)\,t = \mathbf 1$ auf den Zuständen außerhalb der Zielmenge; sie wachsen für das Hinaufklettern wie $\varepsilon^{-n}$:
+Erwartete Treffzeiten der Markov-Kette über alle $E^n$ Profile mit Übergangsmatrix $P$ lösen $(I - Q)\,t = \mathbf 1$ auf den Zuständen außerhalb der Zielmenge; sie wachsen für das Hinaufklettern bei $n \ge 3$ wie $\varepsilon^{-n}$, bei $n = 2$ nur wie $\varepsilon^{-1}$:
 
 $$t = (I - Q)^{-1}\, \mathbf 1$$
 

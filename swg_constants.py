@@ -79,12 +79,12 @@ PRESETS = {
 }
 PRESET_HELP = {
     "Standard (V4-Hook, n = 8)": "Das Rezept des früheren Skripts V4: Logit-Summe, gleichverteilter Start, n = 8, 60 Runden. Schon Runde 1 liegt bei 1,37 (der Zufall), Runde 60 bei 1,00: der Abfall ist fast ganz der Start, nicht das Lernen (Mittel über 1 000 Läufe).",
-    "Kooperativer Start, Summe": "Alle 8 Partner starten auf 7. Die Summenfassung bricht in den ersten Runden ein (Runde 10: 1,44; Runde 60: 1,15; Mittel über 1 000 Läufe): ein Anlaufeffekt, denn die Schärfe beginnt bei einem Zehntel ihres Endwerts.",
+    "Kooperativer Start, Summe": "Alle 8 Partner starten auf 7. Die Summenfassung bricht in den ersten Runden ein (Runde 10: 1,44; Runde 60: 1,15; Mittel über 1 000 Läufe): das ist verträglich mit einem Anlaufeffekt, denn die Schärfe beginnt bei einem Zehntel ihres Endwerts.",
     "Kooperativer Start, Mittel": "Die Mittelfassung (Λ = 50) hält länger, bricht aber ein: Runde 60: 6,00; Runde 150: 4,90; Runde 400: 2,16 (n = 8, alle starten auf 7, Mittel über 1 000 Läufe). 60 Runden zeigen das nicht.",
     "Nur zwei": "Bei n = 2 steigt das Minimum: Runde 1: 2,79 (Zufall: 2,86), Runde 60: 3,91 (Mittel über 1 000 Läufe). In diesem Modell lernen zwei Partner auf etwa Stufe 4, nicht auf 7.",
     "Ohne Rauschen": "Beste Antwort ohne Zittern, n = 8: jeder spielt das Minimum der anderen. Das Minimum bleibt in allen 1 000 gemessenen Läufen von Runde 1 bis Runde 400 gleich (Mittel 1,38): was in Runde 1 ausgelost wird, bleibt stehen.",
     "Billiger Einsatz": "Einsatzpreis b = 0,02 statt 0,1, n = 4: das Minimum steigt (Runde 60: 5,57; Runde 400: 6,89; Mittel über 1 000 Läufe). Bei n = 8 reicht derselbe Preis nicht (Runde 60: 1,71); dazu den Regler n auf 8 stellen.",
     "Prämie": "Prämie a = 2,0 bei Schärfe in Einheiten der Prämie (b/a = 0,05), n = 8: das Minimum steigt langsam (Runde 60: 3,13; Runde 400: 4,96; Mittel über 1 000 Läufe), erreicht die 7 aber nicht. Ohne Normierung der Schärfe wären es 1,37 in Runde 400.",
     "Vorabsprache verblasst": "n = 8, Vorabsprache s = 30 (fiktive Runden „alle auf 7“, ein Anfangszustand, kein Reden): Runde 10: 7,00; Runde 60: 6,70; Runde 400: 2,62 (Mittel über 1 000 Läufe). Die Absprache verblasst.",
-    "Prämie plus Vorabsprache": "n = 16, Prämie a = 1,0 und Vorabsprache s = 5 zusammen: Runde 400: 6,95, in 94,6 % der Läufe steht die ganze Kette auf 7 (Mittel über 1 000 Läufe). Allein hält keines von beiden: die Prämie gibt 1,03, die Absprache 1,00.",
+    "Prämie plus Vorabsprache": "n = 16, Prämie a = 1,0 und Vorabsprache s = 5 zusammen: Runde 400: 6,95, in rund 95 % der Läufe (gemessen 94,6 %, Streuung 94 bis 96 %) steht die ganze Kette auf 7 (Mittel über 1 000 Läufe). Allein hält keines von beiden: die Prämie gibt 1,03, die Absprache 1,00.",
 }
